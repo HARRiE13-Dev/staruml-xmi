@@ -261,15 +261,15 @@ reader.elements["uml:Package"] = function (node) {
     "ownedElements",
     reader.readElementArray(node, "ownedConnector"),
   ); // for EA
-  console.log("UMLPackage", json);  
+  // console.log("UMLPackage", json);  
   return json;
 };
 
 reader.elements["uml:Model"] = function (node) {
-  console.log("Reading UMLModel", node);
+  // console.log("Reading UMLModel", node);
   var json = reader.elements["uml:Package"](node);
   json["_type"] = "UMLModel";
-  console.log("UMLModel", json);  
+  // console.log("UMLModel", json);  
   return json;
 };
 
@@ -492,7 +492,7 @@ reader.elements["uml:BehavioredClassifier"] = function (node) {
 };
 
 reader.elements["uml:Class"] = function (node) {
-  console.log("Class: ", node);
+  // console.log("Class: ", node);
   var json = reader.elements["uml:Classifier"](node);
   var _encapsulated = reader.elements["uml:EncapsulatedClassifier"](node);
   var _behaviored = reader.elements["uml:BehavioredClassifier"](node);
@@ -502,7 +502,7 @@ reader.elements["uml:Class"] = function (node) {
   appendTo(json, "ownedElements", _behaviored.ownedElements);
   appendTo(json, "attributes", _encapsulated.attributes);
   json["_type"] = "UMLClass";
-  console.log('UMLClass: ', json);
+  // console.log('UMLClass: ', json);
   return json;
 };
 
@@ -819,7 +819,7 @@ reader.elements["uml:Stereotype"] = function (node) {
   var json = reader.elements["uml:Class"](node);
   json["_type"] = "UMLStereotype";
   stereotypes.push(json);
-  console.log("Stereotypes", stereotypes);  
+  // console.log("Stereotypes", stereotypes);  
   return json;
 };
 
