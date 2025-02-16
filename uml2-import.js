@@ -127,7 +127,7 @@ reader.elements["uml:Element"] = function (node) {
     node.setAttribute("xmi:id", _id);
   }
   json["_id"] = _id;
-  // console.log("Element", json);
+  // console.log("Element", json);  
   var stereotypeId = reader.readStereotype(node);
   if (stereotypeId) {
     json["stereotype"] = { $ref: stereotypeId };
@@ -229,7 +229,7 @@ reader.elements["uml:NamedElement"] = function (node) {
     node,
     "visibility",
     "uml:VisibilityKind",
-    type.UMLModelElement.VK_PUBLIC
+    type.UMLModelElement.VK_PUBLIC,
   );
   return json;
 };
@@ -252,16 +252,16 @@ reader.elements["uml:Package"] = function (node) {
   appendTo(
     json,
     "ownedElements",
-    reader.readElementArray(node, "packagedElement")
+    reader.readElementArray(node, "packagedElement"),
   );
   // TODO: ownedType
   // TODO: nestedPackage
   appendTo(
     json,
     "ownedElements",
-    reader.readElementArray(node, "ownedConnector")
+    reader.readElementArray(node, "ownedConnector"),
   ); // for EA
-  // console.log("UMLPackage", json);
+  console.log("UMLPackage", json);  
   return json;
 };
 
@@ -269,7 +269,7 @@ reader.elements["uml:Model"] = function (node) {
   console.log("Reading UMLModel", node);
   var json = reader.elements["uml:Package"](node);
   json["_type"] = "UMLModel";
-  // console.log("UMLModel", json);
+  console.log("UMLModel", json);  
   return json;
 };
 
@@ -319,7 +319,7 @@ reader.elements["uml:Property"] = function (node) {
     node,
     "aggregation",
     "uml:AggregationKind",
-    type.UMLAttribute.AK_NONE
+    type.UMLAttribute.AK_NONE,
   );
   json["defaultValue"] = reader.readElement(node, "defaultValue") || "";
   // Read as an AssociationEnd
@@ -346,7 +346,7 @@ reader.elements["uml:BehavioralFeature"] = function (node) {
   json["parameters"] = reader.readElementArray(
     node,
     "ownedParameter",
-    "uml:Parameter"
+    "uml:Parameter",
   );
   return json;
 };
@@ -444,12 +444,12 @@ reader.elements["uml:Classifier"] = function (node) {
   json["attributes"] = reader.readElementArray(
     node,
     "ownedAttribute",
-    "uml:Property"
+    "uml:Property",
   );
   json["operations"] = reader.readElementArray(
     node,
     "ownedOperation",
-    "uml:Operation"
+    "uml:Operation",
   );
   var _generalizations = reader.readElementArray(node, "generalization");
   _generalizations.forEach(function (g) {
@@ -459,12 +459,12 @@ reader.elements["uml:Classifier"] = function (node) {
   appendTo(
     json,
     "ownedElements",
-    reader.readElementArray(node, "collaborationUse")
+    reader.readElementArray(node, "collaborationUse"),
   );
   appendTo(
     json,
     "ownedElements",
-    reader.readElementArray(node, "nestedClassifier")
+    reader.readElementArray(node, "nestedClassifier"),
   );
   return json;
 };
@@ -474,7 +474,7 @@ reader.elements["uml:StructuredClassifier"] = function (node) {
   appendTo(
     json,
     "ownedElements",
-    reader.readElementArray(node, "ownedConnector")
+    reader.readElementArray(node, "ownedConnector"),
   );
   return json;
 };
@@ -492,7 +492,7 @@ reader.elements["uml:BehavioredClassifier"] = function (node) {
 };
 
 reader.elements["uml:Class"] = function (node) {
-  // console.log("Class: ", node);
+  console.log("Class: ", node);
   var json = reader.elements["uml:Classifier"](node);
   var _encapsulated = reader.elements["uml:EncapsulatedClassifier"](node);
   var _behaviored = reader.elements["uml:BehavioredClassifier"](node);
@@ -502,7 +502,7 @@ reader.elements["uml:Class"] = function (node) {
   appendTo(json, "ownedElements", _behaviored.ownedElements);
   appendTo(json, "attributes", _encapsulated.attributes);
   json["_type"] = "UMLClass";
-  // console.log('UMLClass: ', json);
+  console.log('UMLClass: ', json);
   return json;
 };
 
@@ -694,7 +694,7 @@ reader.elements["uml:Component"] = function (node) {
   json["isIndirectlyInstantiated"] = reader.readBoolean(
     node,
     "isIndirectlyInstantiated",
-    false
+    false,
   );
   return json;
 };
@@ -819,7 +819,7 @@ reader.elements["uml:Stereotype"] = function (node) {
   var json = reader.elements["uml:Class"](node);
   json["_type"] = "UMLStereotype";
   stereotypes.push(json);
-  // console.log("Stereotypes", stereotypes);
+  console.log("Stereotypes", stereotypes);  
   return json;
 };
 
@@ -947,7 +947,7 @@ reader.elements["uml:CombinedFragment"] = function (node) {
     node,
     "interactionOperator",
     "uml:InteractionOperatorKind",
-    type.UMLCombinedFragment.IOK_SEQ
+    type.UMLCombinedFragment.IOK_SEQ,
   );
   appendTo(json, "operands", reader.readElementArray(node, "ownedMember")); // for VP
   appendTo(json, "operands", reader.readElementArray(node, "operand"));
@@ -977,7 +977,7 @@ reader.elements["uml:Message"] = function (node) {
     node,
     "messageSort",
     "uml:MessageSort",
-    type.UMLMessage.MS_SYNCHCALL
+    type.UMLMessage.MS_SYNCHCALL,
   );
   var _signature = reader.readElement(node, "signature");
   if (_signature && _signature._type === "UMLCallOperationAction") {
@@ -1053,7 +1053,7 @@ reader.elements["uml:Pseudostate"] = function (node) {
     node,
     "kind",
     "uml:PseudostateKind",
-    type.UMLPseudostate.PSK_INITIAL
+    type.UMLPseudostate.PSK_INITIAL,
   );
   return json;
 };
@@ -1088,7 +1088,7 @@ reader.elements["uml:Transition"] = function (node) {
     node,
     "kind",
     "uml:TransitionKind",
-    type.UMLTransition.TK_INTERNAL
+    type.UMLTransition.TK_INTERNAL,
   );
   json["source"] = reader.readRef(node, "source");
   json["target"] = reader.readRef(node, "target");
@@ -1609,7 +1609,7 @@ reader.postprocessors.push(function (elem) {
 // process Stereotypes
 reader.postprocessors.push(function (elem) {
   if (elem.stereotype && elem.stereotype.$ref) {
-    var stereotype = stereotypes.find((s) => s._id === elem.stereotype.$ref);
+    var stereotype = stereotypes.find(s => s._id === elem.stereotype.$ref);
     if (stereotype) {
       elem.stereotype = stereotype.name;
     }

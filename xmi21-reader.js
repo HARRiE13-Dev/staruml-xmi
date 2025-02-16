@@ -92,8 +92,7 @@ function readString(node, name, defaultValue) {
   if (typeof val !== "undefined" && val !== null) {
     return val;
   }
-  // return defaultValue;
-  return "sss";
+  return defaultValue;
 }
 
 /**
@@ -230,7 +229,7 @@ function readElementArray(node, name, defaultElementType) {
           jsonArray.push(elem);
         }
       }
-    }
+    } 
   }
   return jsonArray;
 }
@@ -282,10 +281,7 @@ function readRefArray(node, name) {
 function readStereotype(node) {
   for (var i = 0; i < node.childNodes.length; i++) {
     var child = node.childNodes[i];
-    if (
-      child.nodeName === "xmi:Extension" &&
-      child.getAttribute("extender") === "StarUML"
-    ) {
+    if (child.nodeName === "xmi:Extension" && child.getAttribute("extender") === "StarUML") {
       for (var j = 0; j < child.childNodes.length; j++) {
         var subChild = child.childNodes[j];
         if (subChild.nodeName === "stereotype") {
@@ -359,13 +355,13 @@ function loadFromFile(filename) {
   var parser = new DOMParser();
   var dom = parser.parseFromString(data, "text/xml");
   var XMINode = dom.childNodes[0]; // dom.getElementsByTagName("XMI")[0];
-  console.log("XMI Node: ", XMINode);
-
+  console.log("XMI Node: ", JSON.stringify(XMINode.attributes, null, 2));
+    
   // Read top-level elements
   var topLevelElements = [];
   for (var i = 0, len = XMINode.childNodes.length; i < len; i++) {
     var child = XMINode.childNodes[i];
-    console.log("Child: " + child);
+    console.log("Child: " + child);    
     var fun = elements[child.nodeName];
     console.log("Fun: " + fun);
     if (fun) {
