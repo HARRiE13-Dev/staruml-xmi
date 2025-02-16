@@ -214,7 +214,9 @@ function readElementArray(node, name, defaultElementType) {
     var child = node.childNodes[i];
     if (child.nodeType === ELEMENT_NODE && child.nodeName === name) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
+      console.log("aaa",_type);
       var fun = elements[_type];
+      console.log("bbb",fun);
       if (fun) {
         var elem = fun(child);
         if (
@@ -225,7 +227,6 @@ function readElementArray(node, name, defaultElementType) {
           if (parentId) {
             elem._parent = { $ref: parentId };
           }
-          console.log("elemaaa", elem);
           idMap[elem._id] = elem;
           jsonArray.push(elem);
         }
