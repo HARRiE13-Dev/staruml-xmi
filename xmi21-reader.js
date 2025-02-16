@@ -231,6 +231,7 @@ function readElementArray(node, name, defaultElementType) {
       }
     }
   }
+  console.log("aaa", jsonArray);
   return jsonArray;
 }
 
