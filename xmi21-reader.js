@@ -284,6 +284,8 @@ function readStereotype(node) {
     if (child.nodeName === "xmi:Extension" && child.getAttribute("extender") === "StarUML") {
       for (var j = 0; j < child.childNodes.length; j++) {
         var subChild = child.childNodes[j];
+        console.log("aa");
+        console.log(subChild);
         if (subChild.nodeName === "stereotype") {
           return subChild.getAttribute("value");
         }
