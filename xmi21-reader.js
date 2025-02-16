@@ -88,15 +88,12 @@ function _findChildByName(node, name) {
  * @return {number|boolean|string|null} value of the attr
  */
 function readString(node, name, defaultValue) {
-  console.log("aaa");
-  console.log(node);
-  console.log(name);
-  console.log(defaultValue);
   var val = node.getAttribute(name);
   if (typeof val !== "undefined" && val !== null) {
     return val;
   }
-  return defaultValue;
+  // return defaultValue;
+  return "sss";
 }
 
 /**
