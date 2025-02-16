@@ -446,7 +446,6 @@ reader.elements["uml:Classifier"] = function (node) {
     "ownedAttribute",
     "uml:Property"
   );
-  console.log(json["attributes"]);
   json["operations"] = reader.readElementArray(
     node,
     "ownedOperation",
