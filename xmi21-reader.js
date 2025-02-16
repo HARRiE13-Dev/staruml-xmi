@@ -287,10 +287,7 @@ function readStereotype(node) {
     ) {
       for (var j = 0; j < child.childNodes.length; j++) {
         var subChild = child.childNodes[j];
-        console.log("aa");
         if (subChild.nodeName === "stereotype") {
-          console.log("bb");
-          console.log(subChild.getAttribute("value"));
           return subChild.getAttribute("value");
         }
       }

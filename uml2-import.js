@@ -128,9 +128,13 @@ reader.elements["uml:Element"] = function (node) {
   }
   json["_id"] = _id;
   // console.log("Element", json);  
-  var stereotypeId = reader.readStereotype(node);
-  if (stereotypeId) {
-    json["stereotype"] = { $ref: stereotypeId };
+  // var stereotypeId = reader.readStereotype(node);
+  // if (stereotypeId) {
+  //   json["stereotype"] = { $ref: stereotypeId };
+  // }
+  var stereotypeVal = reader.readStereotype(node);
+  if (stereotypeVal) {
+    json["stereotype"] = stereotypeVal || "";
   }
   return json;
 };
