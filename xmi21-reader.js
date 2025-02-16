@@ -225,13 +225,13 @@ function readElementArray(node, name, defaultElementType) {
           if (parentId) {
             elem._parent = { $ref: parentId };
           }
+          console.log("elemaaa", elem);
           idMap[elem._id] = elem;
           jsonArray.push(elem);
         }
       }
     }
   }
-  console.log("aaa", jsonArray);
   return jsonArray;
 }
 
