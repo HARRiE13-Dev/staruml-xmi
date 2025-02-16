@@ -92,7 +92,6 @@ function readString(node, name, defaultValue) {
   if (typeof val !== "undefined" && val !== null) {
     return val;
   }
-  console.log("aaa", defaultValue);
   return defaultValue;
 }
 

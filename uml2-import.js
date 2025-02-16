@@ -322,7 +322,6 @@ reader.elements["uml:Property"] = function (node) {
     type.UMLAttribute.AK_NONE
   );
   json["defaultValue"] = reader.readElement(node, "defaultValue") || "";
-  console.log("bbb", json["defaultValue"]);
   // Read as an AssociationEnd
   json["navigable"] = reader.readBoolean(node, "isNavigable", false);
   json["qualifiers"] = reader.readElementArray(node, "qualifier") || [];
@@ -447,6 +446,7 @@ reader.elements["uml:Classifier"] = function (node) {
     "ownedAttribute",
     "uml:Property"
   );
+  console.log(json["attributes"]);
   json["operations"] = reader.readElementArray(
     node,
     "ownedOperation",
