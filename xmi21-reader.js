@@ -212,7 +212,7 @@ function readElementArray(node, name, defaultElementType) {
 
   for (var i = 0, len = node.childNodes.length; i < len; i++) {
     var child = node.childNodes[i];
-    console.count("ccc", child);
+    console.log("ccc", child);
     if (child.nodeType === ELEMENT_NODE && child.nodeName === name) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
       var fun = elements[_type];
@@ -234,7 +234,7 @@ function readElementArray(node, name, defaultElementType) {
       }
     }
   }
-  console.count("zzz", jsonArray);
+  console.log("zzz", jsonArray);
   return jsonArray;
 }
 
