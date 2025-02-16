@@ -212,11 +212,13 @@ function readElementArray(node, name, defaultElementType) {
 
   for (var i = 0, len = node.childNodes.length; i < len; i++) {
     var child = node.childNodes[i];
+    console.log("ccc", child);
     if (child.nodeType === ELEMENT_NODE && child.nodeName === name) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
       var fun = elements[_type];
       if (fun) {
         var elem = fun(child);
+        console.log("bbb", elem);
         if (
           typeof elem !== "undefined" &&
           elem !== null &&
