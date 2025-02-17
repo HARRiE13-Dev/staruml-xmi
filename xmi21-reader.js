@@ -216,8 +216,17 @@ function readElementArray(node, name, defaultElementType) {
 
     if (child.nodeType === ELEMENT_NODE && child.nodeName === name) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
-      // var _value = child.getAttribute("value") || "";
-      console.log("fff", child.childNodes[0].nodeName, i);
+
+      let childValue = child.childNodes;
+      childValue.forEach((node) => {
+        if (
+          node.nodeType === 1 &&
+          node.getAttribute("xmi:type") === "uml:LiteralString"
+        ) {
+          console.log(node.getAttribute("value")); 
+        }
+      });
+
       var fun = elements[_type];
       if (fun) {
         var elem = fun(child);
