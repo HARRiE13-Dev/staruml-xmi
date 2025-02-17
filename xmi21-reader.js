@@ -213,15 +213,13 @@ function readElementArray(node, name, defaultElementType) {
   for (var i = 0, len = node.childNodes.length; i < len; i++) {
     var child = node.childNodes[i];
 
-    console.log("gg", child?.nodeName);
     console.log("iii", child);
 
     if (child.nodeType === ELEMENT_NODE && child.nodeName === name) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
-      var _value = child.getAttribute("value") || "";
+      // var _value = child.getAttribute("value") || "";
 
-      console.log("ddd", child?.nodeName);
-      console.log("fff", child?.getAttribute("xmi:type"));
+      console.log("ddd", child);
       console.log("hhh", _value);
 
       var fun = elements[_type];
