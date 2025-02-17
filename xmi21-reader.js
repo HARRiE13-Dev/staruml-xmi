@@ -213,10 +213,16 @@ function readElementArray(node, name, defaultElementType) {
   for (var i = 0, len = node.childNodes.length; i < len; i++) {
     var child = node.childNodes[i];
 
+    console.log("gg", child?.nodeName);
+    console.log("iii", child?.getAttribute("xmi:type"));
+
     if (child.nodeType === ELEMENT_NODE && child.nodeName === name) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
       var _value = child.getAttribute("value") || "";
-      console.log("sss", _value);
+
+      console.log("ddd", child?.nodeName);
+      console.log("fff", child?.getAttribute("xmi:type"));
+      console.log("hhh", _value);
 
       var fun = elements[_type];
       if (fun) {
@@ -231,12 +237,11 @@ function readElementArray(node, name, defaultElementType) {
           }
           idMap[elem._id] = elem;
           jsonArray.push(elem);
-          console.log("aa", elem);
-          console.log("vv", _value);
         }
       }
     }
   }
+
   return jsonArray;
 }
 
