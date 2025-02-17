@@ -206,6 +206,7 @@ function readElement(node, name) {
  * @param {string} defaultElementType
  * @return {Array.<Object>} converted array of js objects
  */
+let test1
 function readElementArray(node, name, defaultElementType) {
   var parentId = readString(node, "xmi:id");
   var jsonArray = [];
@@ -219,6 +220,7 @@ function readElementArray(node, name, defaultElementType) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
       // var _value = child.getAttribute("value") || "";
       console.log("fff", child , i);
+      test1 = child;
       var fun = elements[_type];
       if (fun) {
         var elem = fun(child);
