@@ -214,7 +214,7 @@ function readElementArray(node, name, defaultElementType) {
     var child = node.childNodes[i];
 
     console.log("gg", child?.nodeName);
-    console.log("iii", child?.getAttribute("xmi:type")) || "ccc";
+    console.log("iii", child);
 
     if (child.nodeType === ELEMENT_NODE && child.nodeName === name) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
