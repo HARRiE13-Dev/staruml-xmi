@@ -218,10 +218,6 @@ function readElementArray(node, name, defaultElementType) {
     if (child.nodeType === ELEMENT_NODE && child.nodeName === name) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
       // var _value = child.getAttribute("value") || "";
-
-      console.log("ddd", child);
-      console.log("hhh", _value);
-
       var fun = elements[_type];
       if (fun) {
         var elem = fun(child);
