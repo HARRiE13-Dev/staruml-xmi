@@ -217,13 +217,14 @@ function readElementArray(node, name, defaultElementType) {
     if (child.nodeType === ELEMENT_NODE && child.nodeName === name) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
 
+      let _value;
       let childValue = child.childNodes;
       childValue.forEach((node) => {
         if (
           node.nodeType === 1 &&
           node.getAttribute("xmi:type") === "uml:LiteralString"
         ) {
-          console.log(node.getAttribute("value")); 
+          _value = node.getAttribute("value");
         }
       });
 
@@ -239,6 +240,9 @@ function readElementArray(node, name, defaultElementType) {
             elem._parent = { $ref: parentId };
           }
           idMap[elem._id] = elem;
+          elem["defaultValue"] = _value;
+          console.log("dddd", _value);
+          console.log("cccc", elem);
           jsonArray.push(elem);
         }
       }
