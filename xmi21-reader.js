@@ -214,12 +214,14 @@ function readElementArray(node, name, defaultElementType) {
     var child = node.childNodes[i];
 
     console.log("ccc", child);
-    console.log("ddd", child?.nodeName);
-    console.log("fff", child?.getAttribute("xmi:type"));
 
     if (child.nodeType === ELEMENT_NODE && child.nodeName === name) {
       var _type = child.getAttribute("xmi:type") || defaultElementType;
       var _value = child.getAttribute("value");
+
+      console.log("ddd", child?.nodeName);
+      console.log("fff", child?.getAttribute("xmi:type"));
+      
       var fun = elements[_type];
       if (fun) {
         var elem = fun(child);
